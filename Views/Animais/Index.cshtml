@@ -1,0 +1,40 @@
+@model IEnumerable<VetCare.Models.Animal>
+
+@{
+    ViewData["Title"] = "Animais";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1>Animais cadastrados</h1>
+    <a class="btn btn-primary" asp-action="Create">Cadastrar animal</a>
+</div>
+
+<table class="table table-striped align-middle">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Espécie</th>
+            <th>Tutor</th>
+            <th>Telefone</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var animal in Model)
+    {
+        <tr>
+            <td>@animal.Nome</td>
+            <td>@animal.Especie</td>
+            <td>@animal.Tutor</td>
+            <td>@animal.Telefone</td>
+            <td>
+                <a class="btn btn-sm btn-outline-primary" asp-action="Details" asp-route-id="@animal.Id">Detalhes</a>
+                <a class="btn btn-sm btn-outline-secondary" asp-action="Edit" asp-route-id="@animal.Id">Editar</a>
+                <form class="d-inline" asp-action="Delete" asp-route-id="@animal.Id" method="post">
+                    <button class="btn btn-sm btn-outline-danger" type="submit">Excluir</button>
+                </form>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

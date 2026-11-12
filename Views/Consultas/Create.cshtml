@@ -1,0 +1,51 @@
+@model VetCare.Models.Consulta
+
+@{
+    ViewData["Title"] = "Marcar consulta";
+}
+
+<div class="form-header mb-4">
+    <span class="eyebrow">NOVO AGENDAMENTO</span>
+    <h1 class="mt-2">Marque uma consulta</h1>
+    <p class="text-muted">Preencha os dados abaixo para reservar o atendimento.</p>
+</div>
+
+<div class="form-card">
+    <form asp-action="Create" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label asp-for="AnimalId" class="form-label">Animal</label>
+                <select asp-for="AnimalId" asp-items="ViewBag.Animais" class="form-select">
+                    <option value="">Selecione o animal</option>
+                </select>
+                <span asp-validation-for="AnimalId" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="Veterinario" class="form-label">Veterinário</label>
+                <select asp-for="Veterinario" asp-items="ViewBag.Veterinarios" class="form-select">
+                    <option value="">Selecione o veterinário</option>
+                </select>
+                <span asp-validation-for="Veterinario" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="Data" class="form-label">Data e horário</label>
+                <input asp-for="Data" type="datetime-local" class="form-control" />
+                <span asp-validation-for="Data" class="text-danger"></span>
+            </div>
+            <div class="col-12">
+                <label asp-for="Motivo" class="form-label">Motivo da consulta</label>
+                <textarea asp-for="Motivo" class="form-control" rows="3" placeholder="Ex.: consulta de rotina, vacina, retorno..."></textarea>
+                <span asp-validation-for="Motivo" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="mt-4">
+            <button class="btn btn-primary" type="submit">Confirmar agendamento</button>
+            <a class="btn btn-outline-secondary" asp-action="Index">Cancelar</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

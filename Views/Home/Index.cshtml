@@ -1,0 +1,58 @@
+@{
+    ViewData["Title"] = "Início";
+}
+
+<section class="hero rounded-4 p-4 p-md-5 mb-4">
+    <div class="row align-items-center g-4">
+        <div class="col-lg-7">
+            <span class="eyebrow">CUIDADO QUE ACOLHE</span>
+            <h1 class="display-4 fw-bold mt-3">A saúde do seu melhor amigo em boas mãos.</h1>
+            <p class="lead mt-3">
+                Na VetCare, cada paciente recebe atenção, carinho e acompanhamento completo.
+            </p>
+            <div class="d-flex flex-wrap gap-2 mt-4">
+                <a class="btn btn-primary btn-lg" asp-controller="Consultas" asp-action="Create">Marcar consulta</a>
+                <a class="btn btn-outline-dark btn-lg" asp-controller="Animais" asp-action="Index">Ver meus animais</a>
+            </div>
+        </div>
+        <div class="col-lg-5 text-center">
+            <div class="hero-card">
+                <span class="pet-icon">+</span>
+                <h2 class="h4 mt-3">Clínica veterinária</h2>
+                <p class="mb-0">Prevenção, cuidado e muito carinho.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="row g-4 mb-5">
+    <div class="col-md-4">
+        <div class="feature-card h-100">
+            <span class="feature-number">01</span>
+            <h2 class="h4 mt-3">Agendamento fácil</h2>
+            <p class="mb-0">Escolha o animal, o veterinário e o melhor horário para a consulta.</p>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="feature-card h-100">
+            <span class="feature-number">02</span>
+            <h2 class="h4 mt-3">Histórico organizado</h2>
+            <p class="mb-0">Mantenha os dados dos seus animais sempre acessíveis.</p>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="feature-card h-100">
+            <span class="feature-number">03</span>
+            <h2 class="h4 mt-3">Atendimento próximo</h2>
+            <p class="mb-0">Uma experiência simples para tutores e profissionais.</p>
+        </div>
+    </div>
+</div>
+
+<section class="appointment-banner rounded-4 p-4 d-flex flex-wrap justify-content-between align-items-center gap-3">
+    <div>
+        <h2 class="h4 mb-1">Já tem uma consulta marcada?</h2>
+        <p class="mb-0">Confira todos os próximos atendimentos.</p>
+    </div>
+    <a class="btn btn-light" asp-controller="Consultas" asp-action="Index">Ver consultas</a>
+</section>

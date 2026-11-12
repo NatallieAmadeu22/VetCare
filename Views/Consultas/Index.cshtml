@@ -1,0 +1,45 @@
+@model IEnumerable<VetCare.Models.Consulta>
+
+@{
+    ViewData["Title"] = "Consultas";
+}
+
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-4">
+    <div>
+        <span class="eyebrow">AGENDA DA CLÍNICA</span>
+        <h1 class="mt-2">Consultas marcadas</h1>
+    </div>
+    <a class="btn btn-primary" asp-action="Create">Marcar consulta</a>
+</div>
+
+@if (!Model.Any())
+{
+    <div class="empty-state text-center p-5">
+        <h2 class="h4">Nenhuma consulta marcada</h2>
+        <p>Agende o próximo cuidado do seu animalzinho.</p>
+        <a class="btn btn-primary" asp-action="Create">Agendar agora</a>
+    </div>
+}
+else
+{
+    <div class="row g-3">
+    @foreach (var consulta in Model)
+    {
+        <div class="col-md-6">
+            <div class="appointment-card h-100">
+                <div class="d-flex justify-content-between gap-3">
+                    <div>
+                        <span class="text-muted small">PACIENTE</span>
+                        <h2 class="h4 mt-1">@consulta.AnimalNome</h2>
+                    </div>
+                    <span class="date-badge">@consulta.Data.ToString("dd MMM")</span>
+                </div>
+                <hr />
+                <p class="mb-2"><strong>Horário:</strong> @consulta.Data.ToString("HH:mm")</p>
+                <p class="mb-2"><strong>Veterinário:</strong> @consulta.Veterinario</p>
+                <p class="mb-0"><strong>Motivo:</strong> @consulta.Motivo</p>
+            </div>
+        </div>
+    }
+    </div>
+}
