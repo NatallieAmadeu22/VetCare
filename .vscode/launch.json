@@ -13,7 +13,11 @@
         "ASPNETCORE_URLS": "http://localhost:5080"
       },
       "stopAtEntry": false,
-      "preLaunchTask": "build VetCare"
+      "preLaunchTask": "build VetCare",
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+      }
     }
   ]
 }

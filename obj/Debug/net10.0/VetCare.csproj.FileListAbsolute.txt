@@ -1,5 +1,6 @@
 /Users/DS2/VetCare/bin/Debug/net10.0/appsettings.Development.json
 /Users/DS2/VetCare/bin/Debug/net10.0/appsettings.json
+/Users/DS2/VetCare/bin/Debug/net10.0/Controllers/Properties/launchSettings.json
 /Users/DS2/VetCare/bin/Debug/net10.0/VetCare.staticwebassets.runtime.json
 /Users/DS2/VetCare/bin/Debug/net10.0/VetCare.staticwebassets.endpoints.json
 /Users/DS2/VetCare/bin/Debug/net10.0/VetCare
@@ -15,6 +16,7 @@
 /Users/DS2/VetCare/obj/Debug/net10.0/VetCare.MvcApplicationPartsAssemblyInfo.cache
 /Users/DS2/VetCare/obj/Debug/net10.0/VetCare.RazorAssemblyInfo.cache
 /Users/DS2/VetCare/obj/Debug/net10.0/VetCare.RazorAssemblyInfo.cs
+/Users/DS2/VetCare/obj/Debug/net10.0/VetCare.sourcelink.json
 /Users/DS2/VetCare/obj/Debug/net10.0/rjimswa.dswa.cache.json
 /Users/DS2/VetCare/obj/Debug/net10.0/rjsmrazor.dswa.cache.json
 /Users/DS2/VetCare/obj/Debug/net10.0/rjsmcshtml.dswa.cache.json

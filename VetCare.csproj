@@ -11,6 +11,11 @@
     <Content Remove="Controllers/ClinicaVet/**/*" />
     <EmbeddedResource Remove="Controllers/ClinicaVet/**/*" />
     <None Remove="Controllers/ClinicaVet/**/*" />
+    <Compile Remove="Controllers/obj/**/*.cs" />
+    <Content Remove="Controllers/bin/**/*" />
+    <Content Remove="Controllers/obj/**/*" />
+    <None Remove="Controllers/bin/**/*" />
+    <None Remove="Controllers/obj/**/*" />
   </ItemGroup>
 
 </Project>

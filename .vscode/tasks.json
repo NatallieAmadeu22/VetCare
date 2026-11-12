@@ -21,7 +21,9 @@
       "args": [
         "run",
         "--project",
-        "${workspaceFolder}/VetCare.csproj"
+        "${workspaceFolder}/VetCare.csproj",
+        "--launch-profile",
+        "http"
       ],
       "problemMatcher": "$msCompile",
       "options": {

@@ -1,4 +1,5 @@
 using System.Security.Claims;
+using System.Net.Mail;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
@@ -10,13 +11,7 @@ namespace VetCare.Controllers;
 public class ContaController : Controller
 {
     private static Conta? contaCadastrada;
-    private readonly IConfiguration configuracao;
     private readonly PasswordHasher<Conta> senhaHasher = new();
-
-    public ContaController(IConfiguration configuracao)
-    {
-        this.configuracao = configuracao;
-    }
 
     [HttpGet]
     public IActionResult Login(string? returnUrl = null)
@@ -30,7 +25,8 @@ public class ContaController : Controller
     public async Task<IActionResult> Login(string email, string senha, string? returnUrl = null)
     {
         var conta = contaCadastrada;
-        if (conta is null || !EmailPermitido(email) ||
+        if (conta is null ||
+            !string.Equals(email.Trim(), conta.Email, StringComparison.OrdinalIgnoreCase) ||
             senhaHasher.VerifyHashedPassword(conta, conta.SenhaHash, senha) == PasswordVerificationResult.Failed)
         {
             ModelState.AddModelError(string.Empty, "E-mail ou senha inválidos.");
@@ -52,15 +48,20 @@ public class ContaController : Controller
     [ValidateAntiForgeryToken]
     public IActionResult Cadastro(string email, string senha, string confirmarSenha)
     {
-        if (!EmailPermitido(email))
+        if (!EmailValido(email))
         {
-            ModelState.AddModelError(nameof(email),
-                $"Somente o e-mail autorizado ({EmailAutorizado()}) pode criar uma conta.");
+            ModelState.AddModelError(nameof(email), "Informe um e-mail válido.");
         }
 
-        if (senha.Length < 6)
+        if (senha.Length < 8 ||
+            !senha.Any(char.IsUpper) ||
+            !senha.Any(char.IsLower) ||
+            !senha.Any(char.IsDigit) ||
+            senha.All(char.IsLetterOrDigit))
         {
-            ModelState.AddModelError(nameof(senha), "A senha deve ter pelo menos 6 caracteres.");
+            ModelState.AddModelError(
+                nameof(senha),
+                "A senha deve ter pelo menos 8 caracteres, incluindo maiúscula, minúscula, número e símbolo.");
         }
 
         if (senha != confirmarSenha)
@@ -105,11 +106,18 @@ public class ContaController : Controller
             new ClaimsPrincipal(identidade));
     }
 
-    private bool EmailPermitido(string email) =>
-        string.Equals(email.Trim(), EmailAutorizado(), StringComparison.OrdinalIgnoreCase);
-
-    private string EmailAutorizado() =>
-        configuracao["Autenticacao:EmailPermitido"] ?? "admin@vetcare.com";
+    private static bool EmailValido(string email)
+    {
+        try
+        {
+            var endereco = new MailAddress(email.Trim());
+            return string.Equals(endereco.Address, email.Trim(), StringComparison.OrdinalIgnoreCase);
+        }
+        catch (FormatException)
+        {
+            return false;
+        }
+    }
 
     private IActionResult RedirectToLocal(string? returnUrl) =>
         !string.IsNullOrWhiteSpace(returnUrl) && Url.IsLocalUrl(returnUrl)

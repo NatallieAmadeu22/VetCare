@@ -1,0 +1,4 @@
+{
+  "dotnet.defaultSolution": "VetCare.csproj",
+  "terminal.integrated.cwd": "${workspaceFolder}"
+}
